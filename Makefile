@@ -63,7 +63,7 @@ endif
 
 test: build/xdebug-filter.php
 ifeq ($(HAS_XDEBUG), 0)
-	phpunit --prepend build/xdebug-filter.php -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
+	phpunit --prepend build/xdebug-filter.php -c phpunit.xml.dist --coverage-clover build/logs/clover.xml --testdox| while IFS= read -r line; do printf '%s %s\n' "$$(date)" "$$line"; done
 else
 	phpunit -c phpunit.xml.dist
 endif
